@@ -14,7 +14,7 @@ A fast classifier that tells whether an Arabic-script text is **Moroccan Darija*
 
 Best parameters: `lr=0.1`, `epoch=15`, `wordNgrams=2`, character n-grams 2 to 5 (`minn=2`, `maxn=5`). Character n-grams help with the many spelling variants of Darija.
 
-The model is saved as `darija_lid.bin` (2.4 MB, not committed: `*.bin` is git-ignored).
+The final model is retrained with `bucket=200000` and compressed with fastText quantization: `darija_lid.ftz`, **6.6 MB**, F1 0.9936 (no loss from compression). It is not committed (`*.ftz` is git-ignored): it is published on the Hugging Face Hub: **[JihaneJra/darija-lid-fasttext](https://huggingface.co/JihaneJra/darija-lid-fasttext)**.
 
 ## Pipeline
 
@@ -35,6 +35,7 @@ The model is saved as `darija_lid.bin` (2.4 MB, not committed: `*.bin` is git-ig
 | fastText's `predict("one text")` crashes with numpy 2 | | Small compatibility patch after the import |
 | `datasets` 5 pulls `huggingface-hub` 2, which breaks `transformers` 4 | Would break the other notebooks | Pinned `datasets<5` |
 | The custom grid search cell was empty (`...`) | | 16 combinations scored on validation; the best one is retrained and evaluated once on test |
+| The saved model would be ~850 MB (default `bucket` of 2M with character n-grams); a first save was truncated when the disk was full | A corrupted model answers "other" for everything | `bucket=200000` + quantization: a 6.6 MB `.ftz` file |
 
 ## Run it
 

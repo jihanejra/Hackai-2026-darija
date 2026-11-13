@@ -12,7 +12,7 @@ The original notebooks come from the [HackAI 2026 challenges](https://github.com
 |---|---|---|
 | [**LLM agents**](notebooks/agents/) | LangGraph agent with a real weather API, an AST-based safe calculator (replaces `eval()`), a multilingual system prompt (FR/EN/AR/Darija), memory and a test suite | 5/5 test scenarios pass (multi-tool, no-tool, Darija, memory, code injection refused) |
 | [**MCP server**](notebooks/mcps/) | Extended the Darija MCP server from 4 to 8 tools: Arabizi → Arabic transliteration, prayer times, weather, Moroccan holidays; whole-word dialect detection in both scripts; stdio mode for Claude Desktop | All 8 tools tested through the MCP protocol |
-| [**Darija language ID**](notebooks/language-lid/) | Fixed a validation leak and a quoting bug in the training files, added a grid search | **F1 (Darija) = 0.994**, accuracy 0.991 on 53,226 test texts |
+| [**Darija language ID**](notebooks/language-lid/) | Fixed a validation leak and a quoting bug in the training files, added a grid search, published the compressed model on the [Hugging Face Hub](https://huggingface.co/JihaneJra/darija-lid-fasttext) | **F1 (Darija) = 0.994**, accuracy 0.991 on 53,226 test texts |
 | [**Evaluation & red-teaming**](notebooks/eval/) | Made the full eval stack run (dependency conflicts, removed model, Windows issues) | RAGAS judge catches a wrong answer (faithfulness 1.0 → 0.5); garak: Base64 injection succeeds 60–80% of the time; inspect Darija safety eval 3/3 |
 
 ## How the notebooks fit together
